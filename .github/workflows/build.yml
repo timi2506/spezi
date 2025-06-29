@@ -23,7 +23,7 @@ jobs:
           csc /nologo /t:winexe /out:Sbezi.exe Sbezi.cs
 
       - name: 📥 Upload Sbezi Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Sbezi
           path: Sbezi.exe
