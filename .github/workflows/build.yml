@@ -1,0 +1,29 @@
+name: Build Sbezi EXE
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: 🔗 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET SDK
+        uses: microsoft/setup-msbuild@v1
+        with:
+          vs-version: 'latest'
+
+      - name: Compile Sbezi
+        run: |
+          csc /nologo /t:winexe /out:Sbezi.exe Sbezi.cs
+
+      - name: 📥 Upload Sbezi Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Sbezi
+          path: Sbezi.exe
